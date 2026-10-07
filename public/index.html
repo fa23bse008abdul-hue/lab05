@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enterprise Security Gateway</title>
+  <style>
+    *{box-sizing:border-box}body{font-family:system-ui,sans-serif;margin:0;background:#0f172a;color:#e2e8f0}
+    main{max-width:960px;margin:0 auto;padding:24px;display:grid;gap:16px;grid-template-columns:1fr 1fr}
+    h1{grid-column:1/-1;margin:0 0 4px;font-size:22px}p.sub{grid-column:1/-1;margin:0;color:#94a3b8;font-size:14px}
+    section{background:#1e293b;border-radius:10px;padding:16px}h2{margin:0 0 10px;font-size:15px;color:#7dd3fc}
+    input{width:100%;padding:8px;margin:4px 0;border-radius:6px;border:1px solid #475569;background:#0f172a;color:#e2e8f0}
+    button,a.btn{display:inline-block;padding:8px 12px;margin:4px 4px 0 0;border:0;border-radius:6px;background:#2563eb;color:#fff;cursor:pointer;font-size:13px;text-decoration:none}
+    button.red{background:#dc2626}button.gray{background:#475569}a.btn.g{background:#dc2626}a.btn.h{background:#334155}
+    pre{grid-column:1/-1;background:#020617;padding:12px;border-radius:10px;min-height:160px;max-height:320px;overflow:auto;font-size:12px;white-space:pre-wrap}
+    #who{color:#86efac;font-size:13px;margin-top:8px}
+    @media(max-width:700px){main{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Enterprise Multi-Tenant Security Gateway</h1>
+  <p class="sub">Demo client. Access token lives in memory only; refresh token is an httpOnly cookie.</p>
+
+  <section>
+    <h2>Local login / register</h2>
+    <input id="email" type="email" placeholder="email" autocomplete="username" />
+    <input id="password" type="password" placeholder="password" autocomplete="current-password" />
+    <button id="login">Login</button>
+    <button id="register" class="gray">Register (Employee)</button>
+    <div style="margin-top:8px">
+      <a class="btn g" href="/api/v1/auth/google">Sign in with Google</a>
+      <a class="btn h" href="/api/v1/auth/github">Sign in with GitHub</a>
+    </div>
+    <div id="who">Not signed in</div>
+  </section>
+
+  <section>
+    <h2>Token + RBAC tests</h2>
+    <button id="refresh">POST /auth/refresh</button>
+    <button id="logout" class="red">Logout</button><br />
+    <button id="profile">GET /employee/profile</button>
+    <button id="payroll">POST /payroll/approve</button><br />
+    <input id="uid" placeholder="user id to delete" />
+    <button id="del" class="red">DELETE /users/:id</button>
+  </section>
+
+  <pre id="out">Ready.</pre>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
