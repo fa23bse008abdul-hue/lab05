@@ -1,0 +1,51 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Mini-Shop Test Console</title>
+<style>
+ body{font-family:system-ui,sans-serif;max-width:900px;margin:20px auto;padding:0 12px}
+ fieldset{margin:10px 0;border:1px solid #bbb;border-radius:6px} legend{font-weight:600}
+ input,textarea{font:inherit;padding:4px;margin:2px} textarea{width:96%;font-family:monospace}
+ button{padding:5px 10px;margin:2px;cursor:pointer}
+ pre{background:#111;color:#0f0;padding:10px;min-height:120px;white-space:pre-wrap;word-break:break-all}
+</style></head><body>
+<h2>Mini-Shop Test Console <small>(localhost lab only)</small></h2>
+
+<fieldset><legend>Login</legend>
+ <input id="email" value="ali@shop.test" placeholder="email">
+ <input id="password" value="Passw0rd!123" placeholder="password">
+ <button id="btnLogin">Login</button><br>
+ JWT (editable, paste a tampered one here): <input id="token" size="70">
+</fieldset>
+
+<fieldset><legend>Raw JSON to /login (SQLi / NoSQL payloads)</legend>
+ <textarea id="rawLogin" rows="3">{"email":"ali@shop.test","password":{"$ne":null}}</textarea><br>
+ <button id="btnRaw">Send</button>
+ <button id="btnSqli">Fill SQLi payload</button>
+</fieldset>
+
+<fieldset><legend>Register (raw JSON, try bad phone / extra field)</legend>
+ <textarea id="regBody" rows="5">{"email":"new@shop.test","password":"Str0ngPass!","phone":"03001234567","cnic":"12345-1234567-1"}</textarea><br>
+ <button id="btnReg">Register</button>
+</fieldset>
+
+<fieldset><legend>XSS</legend>
+ Search: <input id="search" size="45" value="&lt;img src=x onerror=alert('XSS')&gt;">
+ <button id="btnSearch">Search (new tab)</button><br>
+ Review - product id: <input id="pid" size="3" value="1"> text: <input id="rtext" size="40" value="&lt;img src=x onerror=alert('XSS')&gt;">
+ <button id="btnReview">Post review</button> <button id="btnViewRev">View reviews (new tab)</button>
+</fieldset>
+
+<fieldset><legend>Orders, BOLA, CSRF</legend>
+ Order id: <input id="oid" size="3" value="2">
+ <button id="btnOrder">GET /orders/:id (uses JWT)</button>
+ <button id="btnPay">Open pay form (new tab, session cookie)</button>
+</fieldset>
+
+<fieldset><legend>Other</legend>
+ <button id="btnHpp">HPP: /echo?amount=10&amp;amount=1000</button>
+ <button id="btnAdmin">GET /admin/users (JWT role)</button>
+ <button id="btnLoop">Login x7 with wrong password (rate limit)</button>
+</fieldset>
+
+<pre id="out">Output appears here.</pre>
+<script src="/app.js"></script>
+</body></html>

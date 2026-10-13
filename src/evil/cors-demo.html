@@ -1,0 +1,13 @@
+<!doctype html>
+<title>CORS demo (port 4000)</title>
+<p>Paste a JWT from POST /login, then click.</p>
+<input id="t" size="60"><button onclick="go()">Call API</button>
+<pre id="out"></pre>
+<script>
+  async function go() {
+    try { // Authorization header forces an OPTIONS preflight
+      const r = await fetch('http://localhost:3000/orders/1', { headers: { Authorization: 'Bearer ' + t.value } });
+      out.textContent = JSON.stringify(await r.json(), null, 2);
+    } catch (e) { out.textContent = 'Blocked: ' + e; }
+  }
+</script>

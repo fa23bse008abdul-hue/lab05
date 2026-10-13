@@ -1,29 +1,31 @@
 {
-  "name": "enterprise-security-gateway",
+  "name": "csc337-mini-shop",
   "version": "1.0.0",
-  "description": "Enterprise Multi-Tenant Security Gateway: Hybrid Auth (Bcrypt + OAuth 2.0), JWT rotation, RBAC, OWASP hardening",
-  "main": "src/server.js",
-  "engines": { "node": ">=18" },
+  "private": true,
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "seed": "node src/utils/seed.js"
+    "start:vuln": "cross-env SECURE=false node src/server.js",
+    "start:evil": "node src/evil/server.js",
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.6",
+    "better-sqlite3": "^11.3.0",
     "cors": "^2.8.5",
+    "csrf-sync": "^4.0.3",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "express-mongo-sanitize": "^2.2.0",
-    "express-rate-limit": "^7.2.0",
-    "helmet": "^7.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.1",
-    "passport": "^0.7.0",
-    "passport-github2": "^0.1.12",
-    "passport-google-oauth20": "^2.0.0",
-    "xss": "^1.0.15"
+    "express-rate-limit": "^7.4.0",
+    "express-session": "^1.18.0",
+    "helmet": "^8.0.0",
+    "hpp": "^0.2.3",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2"
   },
-  "devDependencies": { "nodemon": "^3.1.0" }
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
 }

